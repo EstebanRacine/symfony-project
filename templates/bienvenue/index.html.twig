@@ -1,7 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BienvenueController!{% endblock %}
+{% block title %}Bienvenue !{% endblock %}
 
 {% block body %}
-<h1>Bienvenue dans le cours Symfony</h1>
+
+    {# SI un prénom est passé en paramètre #}
+    {% if prenom is defined %}
+        <h1>Bienvenue {{ prenom|capitalize }} dans le cours Symfony </h1>
+        <p>Votre prénom a une longueur de {{ prenom|length }} caractères</p>
+        {%  if prenom starts with "j" %}
+            <p>Votre nom commence par la lettre J.</p>
+        {% else %}
+            <p>Votre prénom ne commence pas par la lettre J.</p>
+        {% endif %}
+
+    {# SINON #}
+    {% else %}
+        <h1>Bienvenue dans le cours Symfony</h1>
+    {% endif %}
 {% endblock %}
