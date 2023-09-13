@@ -32,6 +32,5 @@ class BienvenueController extends AbstractController
         return $this->render('bienvenue/bienvenues.html.twig',[
             "personnes"=>$personnes
         ]);
-
     }
 }

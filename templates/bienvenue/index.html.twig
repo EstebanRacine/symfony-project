@@ -6,7 +6,7 @@
 
     {# SI un prénom est passé en paramètre #}
     {% if prenom is defined %}
-        <h1>Bienvenue {{ prenom|capitalize }} dans le cours Symfony </h1>
+        <h1>Bienvenue à {{ prenom|capitalize }} dans le cours Symfony </h1>
         <p>Votre prénom a une longueur de {{ prenom|length }} caractères</p>
         {%  if prenom starts with "j" %}
             <p>Votre nom commence par la lettre J.</p>
