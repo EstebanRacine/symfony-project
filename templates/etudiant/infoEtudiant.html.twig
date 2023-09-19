@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% if etudiant == null %}
+
+{% endif %}
+
+{% block title %} {{ etudiant.prenom|capitalize }} {{ etudiant.nom|capitalize}} {% endblock %}
+
+{% block body %}
+    <h1>Information d'étudiant</h1>
+<ul>
+    <li>{{ etudiant.prenom }}</li>
+    <li>{{ etudiant.nom }}</li>
+    <li>{{ etudiant.email }}</li>
+    <li>{{ etudiant.dateNaissance|date('d/m/Y') }}</li>
+    <li>Cet étudiant a {{ age }} ans</li>
+</ul>
+{% endblock %}
+
