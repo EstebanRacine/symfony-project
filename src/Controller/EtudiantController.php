@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\EtudiantRepository;
+use Doctrine\Common\Collections\Criteria;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,20 +21,38 @@ class EtudiantController extends AbstractController
         ]);
     }
 
-    #[Route('/etudiants/{id_etudiant}', name: 'app_etudiant_info')]
+    #[Route('/etudiants/mineursCriteres', name: 'app_etudiant_mineurs_list_critere')]
+    public function listMineursCritere(EtudiantRepository $etudiantRepository): Response
+    {
+        $dateMajorite = new \DateTime('-18 years');
+        $critere = new Criteria();
+        $critere->where(Criteria::expr()->gte("dateNaissance", $dateMajorite));
+        $etudiants = $etudiantRepository->matching($critere);
+        return $this->render('etudiant/index.html.twig', [
+            "etudiants" => $etudiants
+        ]);
+    }
+
+    #[Route('/etudiants/mineurs', name: 'app_etudiant_mineurs_list')]
+    public function listMineurs(EtudiantRepository $etudiantRepository): Response
+    {
+        $etudiants = $etudiantRepository->findMineurs2();
+        return $this->render('etudiant/index.html.twig', [
+            "etudiants" => $etudiants
+        ]);
+    }
+
+    #[Route('/etudiants/{id_etudiant}', name: 'app_etudiant_info', requirements: ['id'=>'\d+'])]
     public function info(EtudiantRepository $etudiantRepository, int $id_etudiant): Response
     {
         $etudiant = $etudiantRepository->find($id_etudiant);
         if ($etudiant == null){
-            return $this->redirectToRoute('app_erreur404');
+            return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
         }
-
-        $interval = $etudiant->getDateNaissance()->diff(now());
-        $age = $interval->y;
-
         return $this->render('etudiant/infoEtudiant.html.twig', [
-            "etudiant" => $etudiant,
-            "age" => $age
+            "etudiant" => $etudiant
         ]);
     }
+
+
 }

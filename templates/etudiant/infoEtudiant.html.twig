@@ -9,11 +9,11 @@
 {% block body %}
     <h1>Information d'étudiant</h1>
 <ul>
-    <li>{{ etudiant.prenom }}</li>
-    <li>{{ etudiant.nom }}</li>
-    <li>{{ etudiant.email }}</li>
-    <li>{{ etudiant.dateNaissance|date('d/m/Y') }}</li>
-    <li>Cet étudiant a {{ age }} ans</li>
+    <li>Prénom : {{ etudiant.prenom }}</li>
+    <li>Nom : {{ etudiant.nom }}</li>
+    <li>Mail : {{ etudiant.email }}</li>
+    <li>Né le : {{ etudiant.dateNaissance|date('d/m/Y') }}</li>
+    <li>Cet étudiant a {{ etudiant.age }} ans</li>
 </ul>
 {% endblock %}
 
