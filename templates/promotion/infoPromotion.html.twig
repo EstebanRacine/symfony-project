@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{%  block title %} {{ promotion.nom|capitalize }} {% endblock %}
+
+{% block body %}
+    <div class="contenu">
+        <h1>INFORMATIONS D'UNE PROMOTION</h1>
+        <p>Nom : {{ promotion.nom }}</p>
+        <p>Année : {{ promotion.annee }}</p>
+        <p>Nombre d'étudiants : {{ promotion.nbEtudiant }}</p>
+
+        <h3>Liste des étudiants</h3>
+        <ul>
+            {% for etudiant in promotion.etudiants|sort((a, b) => a.nom > b.nom) %}
+                <li><a href="{{ path('app_etudiant_info', {"id_etudiant" : etudiant.id}) }}">{{ etudiant.prenom }} {{ etudiant.nom }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}

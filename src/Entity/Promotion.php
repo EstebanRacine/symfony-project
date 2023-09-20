@@ -87,4 +87,8 @@ class Promotion
 
         return $this;
     }
+
+    public function getNbEtudiant(): int{
+        return count($this->etudiants);
+    }
 }

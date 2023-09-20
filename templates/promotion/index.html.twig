@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Promotions{% endblock %}
+
+{% block body %}
+<div class="contenu">
+    <h1>Promotions</h1>
+    <ul>
+        {% for promotion in promotions %}
+            <li><a href="{{ path('app_promotions_info', {"id" : promotion.id}) }}">{{ promotion.nom }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
