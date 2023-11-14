@@ -21,6 +21,7 @@ class Etudiant
     private ?string $nom = null;
 
     #[ORM\Column(length: 100)]
+
     private ?string $email = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
